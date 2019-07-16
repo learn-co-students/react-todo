@@ -1,26 +1,35 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import FormContainer from './FormContainer';
+import TodoContainer from './TodoContainer';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      todos: ['clean room', 'dust']
+    }
+  }
+
+  addNewTodo(newTodo){
+    console.log(newTodo)
+    const oldTodos = this.state.todos;
+    this.setState({
+      todos: [...oldTodos, newTodo]
+    })
+  }
+
+
+  render(){
+    return (
+      <div className="App">
+        <h1>Todo App:</h1>
+        <FormContainer addNewTodo={(newTodo) => {this.addNewTodo(newTodo)}}/>
+        <TodoContainer todos={this.state.todos}/>
+      </div>
+    );
+  }
 }
 
 export default App;
