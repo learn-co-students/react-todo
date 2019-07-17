@@ -24,7 +24,6 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-        <h1>Todo App:</h1>
         <FormContainer addNewTodo={(newTodo) => {this.addNewTodo(newTodo)}}/>
         <TodoContainer todos={this.state.todos}/>
       </div>

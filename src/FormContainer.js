@@ -21,13 +21,12 @@ class FormContainer extends React.Component {
   }
 
   render(){
-    return <div style={{marginBottom: '20px'}}>
-      <h4> Add a todo: </h4>
+    return <div style={{margin: '20px'}}>
       <form onSubmit={(event)=>{this.handleFormSubmission(event)}}>
         <input onChange={(event) => { this.handleInputUpdate(event)}} value={this.state.input} />
         <input type='submit' />
       </form>
-      </div>
+    </div>
   }
 }
 
