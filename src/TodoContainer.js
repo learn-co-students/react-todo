@@ -3,8 +3,13 @@ import Todo from './Todo';
 
 class TodoContainer extends React.Component {
   render(){
-    const todoLis = this.props.todos.map((todo) =>{
-      return <Todo value={todo} />
+    const { todos, deleteTodo, updateTodo } = this.props
+
+    const todoLis = todos.map((todo) =>{
+      return <Todo 
+               deleteTodo={deleteTodo}
+               updateTodo={updateTodo}
+               value={todo} />
     })
 
     return (

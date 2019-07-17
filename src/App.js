@@ -13,10 +13,25 @@ class App extends React.Component {
   }
 
   addNewTodo(newTodo){
-    console.log(newTodo)
     const oldTodos = this.state.todos;
     this.setState({
       todos: [...oldTodos, newTodo]
+    })
+  }
+
+  deleteTodo(todoToDelete){
+    const filteredTodos = this.state.todos.filter((todo)=> todo !== todoToDelete)
+    this.setState({
+      todos: filteredTodos
+    })
+  }
+
+  updateTodo(originalTodo, editedTodo){
+    const todoIndex = this.state.todos.findIndex((todo) => todo === originalTodo)
+    const updatedTodosList = this.state.todos
+    updatedTodosList[todoIndex] = editedTodo
+    this.setState({
+      todos: updatedTodosList
     })
   }
 
@@ -24,9 +39,11 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-        <h1>Todo App:</h1>
         <FormContainer addNewTodo={(newTodo) => {this.addNewTodo(newTodo)}}/>
-        <TodoContainer todos={this.state.todos}/>
+        <TodoContainer 
+          deleteTodo={(todo) => {this.deleteTodo(todo)}}
+          updateTodo={(originalTodo, editedTodo) => {this.updateTodo(originalTodo, editedTodo)}}
+          todos={this.state.todos}/>
       </div>
     );
   }
